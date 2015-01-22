@@ -19,7 +19,7 @@ void inverse_kinematic(AgentModel& am,Cerebellum& cer)
   double pdx = pd[0];
   double pdy = pd[1];
   double pdz = pd[2];
-  double th6 = atan2(pdy,pdz);
+  double th6 = atan2(abs(pdy),abs(pdz));
   double num = pdy*(l2 + l1*cos(th4)) + l1*pdx*sin(th4);
   double denum = l1*l1*sin(th4)*sin(th4)+(l2+l1*cos(th4))*(l2+l1*cos(th4));
   double th5 = asin(num/denum);
