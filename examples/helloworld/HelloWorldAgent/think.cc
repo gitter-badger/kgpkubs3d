@@ -1,18 +1,19 @@
 #include "helloworldagent.ih"
 
-void print(string name,float val)
+void print(string name,float calc,float actual)
 {
-  cout << name << " " << (180*val)/M_PI << endl;
+  cout << name << " " << (180*calc)/M_PI << " " << (180*actual)/M_PI << endl;
 }
 
 void inverse_kinematic(AgentModel& am,Cerebellum& cer)
 {
-  Eigen::Affine3d td = (am.getJoint(Types::LLEG1)->transform).inverse();
-  Eigen::Vector3d pd = td * am.getJointPosition(Types::LLEG6);
+  Eigen::Affine3d td = (am.getJoint(Types::LLEG1)->transform).inverse(); //
+  Eigen::Vector3d pd = td * am.getJointPosition(Types::LLEG6); //
 
-  double l1 = am.getBodyPart(Types::LUPPERLEG)->size[2];
-  double l2 = am.getBodyPart(Types::LLOWERLEG)->size[2];
+  double l1 = 0.110001; //
+  double l2 = 0.110001; //
   double d = pd.norm();
+  cout << l1 << " " << l2 << " " << d << endl;
 
   double th4 = M_PI - acos((l1*l1 + l2*l2 - d*d)/(2*l1*l2)); 
   double pdx = pd[0];
@@ -23,14 +24,21 @@ void inverse_kinematic(AgentModel& am,Cerebellum& cer)
   double denum = l1*l1*sin(th4)*sin(th4)+(l2+l1*cos(th4))*(l2+l1*cos(th4));
   double th5 = asin(num/denum);
 
-  Eigen::Affine3d tddd = am.getJoint(Types::LLEG3)->transform;
+  cout << pdx << " " << pdy << " " << pdz << endl;
+
+  Eigen::Affine3d tddd = (am.getJoint(Types::LLEG3)->transform); //
   double th2_cap = acos(tddd(2,3));
   double th2 = th2_cap - M_PI/4;
   double th3 = asin( tddd(2,2) / sin(th2 + M_PI/2) );
   double th1_cap = acos(tddd(1,3)/sin(th2+M_PI/4));
   double th1 = th1_cap + M_PI/2;
-  //print("foot Actual ",am.getJoint(Types::LLEG5)->angle->getMu()(0));
-   
+
+  print("1",th1,am.getJoint(Types::LLEG1)->angle->getMu()(0));
+  print("2",th2,am.getJoint(Types::LLEG2)->angle->getMu()(0));
+  print("3",th3,am.getJoint(Types::LLEG3)->angle->getMu()(0));
+  print("4",th4,am.getJoint(Types::LLEG4)->angle->getMu()(0));
+  print("5",th5,am.getJoint(Types::LLEG5)->angle->getMu()(0));
+  print("6",th6,am.getJoint(Types::LLEG6)->angle->getMu()(0));
 }
 
 void HelloWorldAgent::think()
