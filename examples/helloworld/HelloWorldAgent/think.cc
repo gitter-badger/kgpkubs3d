@@ -10,8 +10,8 @@ void inverse_kinematic(AgentModel& am,Cerebellum& cer)
   Eigen::Affine3d td = (am.getJoint(Types::LLEG1)->transform).inverse(); //
   Eigen::Vector3d pd = td * am.getJointPosition(Types::LLEG6); //
 
-  double l1 = 0.110001; //
-  double l2 = 0.110001; //
+  double l1 = 0.11005; //
+  double l2 = 0.11005; //
   double d = pd.norm();
   cout << l1 << " " << l2 << " " << d << endl;
 
