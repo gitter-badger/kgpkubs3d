@@ -1,0 +1,6 @@
+#include "types.hh"
+#include "../WorldModel/worldmodel.hh"
+#include <iostream>
+
+using namespace std;
+using namespace bats;

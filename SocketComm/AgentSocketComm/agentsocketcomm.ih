@@ -1,0 +1,8 @@
+#include "agentsocketcomm.hh"
+#include "../../AgentModel/agentmodel.hh"
+#include "../../Predicate/predicate.hh"
+
+using namespace std;
+using namespace bats;
+using namespace Eigen;
+

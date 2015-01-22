@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE conf SYSTEM "conf.dtd">
+
+<conf xmlns:xi="http://www.w3.org/2003/XInclude">  
+  <xi:include href="nao_mdl.xml"/>
+
+  <player-class index="0"/>
+  <player-class index="1"/>
+  <player-class index="2"/>
+  <player-class index="3"/>
+  <player-class index="4"/>
+  <player-class index="5"/>
+  <player-class index="6"/>
+  <player-class index="7"/>
+  <player-class index="8"/>
+  <player-class index="9"/>
+  <player-class index="10"/>
+  <player-class index="11"/>
+
+  <gaitgenerator id="dribblegaitgenerator">
+    <period>0.45</period>
+    <ellipselength>0.08</ellipselength>
+    <sidewidth>0.04</sidewidth>
+    <ellipseheight>0.025</ellipseheight>
+    <startuptime>2</startuptime>
+    <offsetx>0.02</offsetx>
+    <offsety>-0.02</offsety>
+    <offsetz>-0.18</offsetz>
+    <maxturnangle>20.0</maxturnangle>
+    <leanangle>12</leanangle>
+  </gaitgenerator>
+
+  <motionsequenceplayer id="getupfromback">
+    <sequence>
+
+        &head1;: 0 0;
+        &head2;: 0 0;
+        
+        &larm1;: 0 -90,  0.4 -90,  0.8 90,  0.95 90,  1 -90;
+        &larm2;: 0 0;
+        &larm3;: 0 0;
+        &larm4;: 0 0;
+    
+        &rarm1;: 0 -90,  0.4 -90,  0.8 90,  0.95 90,  1 -90;
+        &rarm2;: 0 0;
+        &rarm3;: 0 0;
+        &rarm4;: 0 0;
+        
+        &lleg1;: 0 0,  0.4 0,  0.8 -89,   2.5 -89,   3.5 0;
+        &lleg2;: 0 0,  0.4 0,  0.8  89,   2.5  89,   3.5 35;
+        &lleg4;: 0 0,  0.9 0,  1.0 -129,  2.5 -129,  3.5 -50;
+        &lleg5;: 0 0,                     2.5 0,     3.5 25;
+ 
+        &rleg1;: 0 0,  0.4 0,  0.8 -89,   2.5 -89,   3.5 0;
+        &rleg2;: 0 0,  0.4 0,  0.8 89,    2.5 89,    3.5 35;
+        &rleg4;: 0 0,  0.9 0,  1.0 -129,  2.5 -129,  3.5 -50;
+        &rleg5;: 0 0,                     2.5 0,     3.5 25;
+
+        &end;: 4;
+    </sequence>
+  </motionsequenceplayer>
+
+  <motionsequenceplayer id="getupfromfront">
+    <sequence>
+        &head1;: 0 0;
+        &head2;: 0 0;
+
+        &larm1;: 0 -90,  0.4 -90,  0.6 0,  1.5 0, 2.0 -90;
+        &larm2;: 0 0;
+        &larm3;: 0 0;
+        &larm4;: 0 0;
+    
+        &rarm1;: 0 -90,  0.4 -90,  0.6 0,  1.5 0, 2.0 -90;
+        &rarm2;: 0 0;
+        &rarm3;: 0 0;
+        &rarm4;: 0 0;
+        
+        &lleg1;: 0 0,  0.6 0,  0.7 -89,   2.5 -89,  3.5 0;
+        &lleg2;: 0 0,  0.6 0,  0.7 89,    2.5 89,   3.5 35;
+        &lleg4;: 0 0,  0.6 0,  0.7 -129,  2.5 -129, 3.5 -50;
+        &lleg5;: 0 0,                     2.5 0,    3.5 25;
+        &rleg6;: 0 0;
+ 
+        &rleg1;: 0 0,  0.6 0,  0.7 -89,   2.5 -89,  3.5 0;
+        &rleg2;: 0 0,  0.6 0,  0.7 89,    2.5 89,   3.5 35;
+        &rleg4;: 0 0,  0.6 0,  0.7 -129,  2.5 -129, 3.5 -50;
+        &rleg5;: 0 0,                     2.5 0,    3.5 25;
+        &rleg6;: 0 0;
+        
+        &end;: 4;
+    </sequence>
+  </motionsequenceplayer>
+</conf>    
+
+

@@ -1,0 +1,22 @@
+#include "humanoidagent.hh"
+
+#include "../AgentModel/agentmodel.hh"
+#include "../Localizer//localizer.hh"
+#include "../Conf/conf.hh"
+#include "../Cerebellum/cerebellum.hh"
+#include "../Clock/RC3DClock/rc3dclock.hh"
+#include "../SituationDetector/situationdetector.hh"
+#include "../PCSelector/pcselector.hh"
+#include "../Predicate/predicate.hh"
+
+#include <sstream>
+#include <unistd.h>
+
+#define DEBUGLEVEL 0
+#include "../Preprocessor/debug.hh"
+
+#include "configure.hh"
+
+using namespace bats;
+using namespace std;
+

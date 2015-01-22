@@ -1,0 +1,52 @@
+*~
+*#*
+build
+docs/manual/simulator.eps
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles
+Makefile
+docs/html
+docs/latex
+*.aux
+*.log
+*.out
+*.toc
+libbatsmanual.pdf
+
+/libbats.a
+/examples/helloworld/helloworld
+/examples/dribble/dribble
+/Doxyfile
+*.el
+/configure.hh
+/install_manifest.txt
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
