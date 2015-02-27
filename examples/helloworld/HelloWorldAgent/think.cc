@@ -2,7 +2,6 @@
 
 const float rtd = 180/M_PI;
 const float dtr = M_PI/180;
-
 void print(string name,float calc,float actual)
 {
   cout << name << " " << rtd*calc << " " << rtd*actual << endl;
@@ -43,22 +42,21 @@ void inverse_kinematic(AgentModel& am,Cerebellum& cer)
   print("6",th6,am.getJoint(Types::LLEG6)->angle->getMu()(0));
 }
 
-double l=0;
-const double interval = .02;
-
+double l=0.00;
+const double interval = 0.1;
+int cnt=0;
 // put inside a while loop
-Eigen::Vector3d trajectory()
+Eigen::Vector3d trajectory(AgentModel& am)
 {
    l = (l+interval)>1?(l+interval)-1:(l+interval);  // using mod on decimal was giving error..
-   int ld = 1-l;
-
-  Eigen::Vector3d al,ar,sllift,srlift,sl,sr; // input.. we might need to decide suitable values
-
+   double ld = 1-l;
+   double scale = am.getBodyPart(Types::LLOWERLEG)->size[2];
+  Eigen::Vector3d al=am.getJointPosition(Types::LLEG6),ar=am.getJointPosition(Types::RLEG6),sllift(0,0,scale*.3),srlift(0,0,scale*.3),sl(0,scale*.5,0),sr(0,scale*.5,0); // input.. we might need to decide suitable values
   double tllift,trlift,tlmove,trmove,tl,tr;
-  int x1=0;
-  int y1=.5;
-  int xm=0;
-  int ym=.5;
+  double x1=0;
+  double y1=.5;
+  double xm=0;
+  double ym=.5;
   if(2*l>=x1 && 2*l<=(x1+y1))
     tllift = .5*(1-cos(2*M_PI*((2*l-x1)/y1)));
   else
@@ -100,9 +98,22 @@ Eigen::Vector3d trajectory()
     prrel = ar + sr*trmove + srlift*trlift - sl*(1-trmove)*tr;
   else
     prrel = ar + srlift*trlift + sr*(1-tl);
-
+ // cout<<am.getBodyPartPosition(Types::TORSO);
+  //cout<<al[0]<<endl;
+  //cout<<ar[0]<<endl;
+ // cout<<"tllift = "<<tllift<<endl;
+  //cout<<"trlift = "<<trlift<<endl;
+  //cout<<"tlmove = "<<tlmove<<endl;
+  //cout<<"trmove = "<<trmove<<endl;
+  //cout<<"tl = "<<tl<<endl;
+  //cout<<"tr = "<<tr<<endl;
+  if(cnt<50){
+  cout<<plrel[0]<<" "<<plrel[1]<<" "<<plrel[2]<<" ";
+  cout<<prrel[0]<<" "<<prrel[1]<<" "<<prrel[2]<<endl;
+}
+  cnt++;
   // for foot position w.r.t. COM
-
+/*
   Eigen::Vector3d cs ;                     // offset of COM relative to torso - from sim..
   Eigen::Vector3d ss ;                     // amplitude of COM in y direction - input
   double xc,yc,zc;
@@ -130,6 +141,7 @@ Eigen::Vector3d trajectory()
   Eigen::Vector3d final_l = plrel - enew;
   Eigen::Vector3d final_r = prrel - enew;
   // we will use these final values and apply IK on them..
+  */
 }
 
 void HelloWorldAgent::think()
@@ -147,7 +159,8 @@ void HelloWorldAgent::think()
   
   // Get the current time
   double t = wm.getTime();
-
+  freopen("/home/shreygarg/Desktop/data.txt","a",stdout);
+  trajectory(am);
   //inverse_kinematic(am,cer);
 /*
   // Get the current angles of some shoulder joints
