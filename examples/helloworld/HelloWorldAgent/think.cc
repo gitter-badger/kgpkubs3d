@@ -45,13 +45,27 @@ void inverse_kinematic(AgentModel& am,Cerebellum& cer)
 double l=0.00;
 const double interval = 0.1;
 int cnt=0;
+double scale=0.11;
+  Eigen::Vector3d ashift(0,scale*.5,0);
+Eigen::Vector3d sllift(0,0,scale*.3),srlift(0,0,scale*.3),sl=ashift,sr=ashift; // input.. we might need to decide suitable values
+Eigen::Vector3d al,ar;
 // put inside a while loop
+int flag=0,flag1=0;
+Eigen::Vector3d plrel=al,prrel=ar;   
 Eigen::Vector3d trajectory(AgentModel& am)
 {
+  if(cnt==0)
+  {
+    al=am.getJointPosition(Types::LLEG6);
+    ar=am.getJointPosition(Types::RLEG6);
+  }
+  if(l==0 || cnt!=0)
+    sl= 2*ashift;
+  if(l==.5)
+    sr = 2*ashift;
    l = (l+interval)>1?(l+interval)-1:(l+interval);  // using mod on decimal was giving error..
    double ld = 1-l;
    double scale = am.getBodyPart(Types::LLOWERLEG)->size[2];
-  Eigen::Vector3d al=am.getJointPosition(Types::LLEG6),ar=am.getJointPosition(Types::RLEG6),sllift(0,0,scale*.3),srlift(0,0,scale*.3),sl(0,scale*.5,0),sr(0,scale*.5,0); // input.. we might need to decide suitable values
   double tllift,trlift,tlmove,trmove,tl,tr;
   double x1=0;
   double y1=.5;
@@ -87,8 +101,7 @@ Eigen::Vector3d trajectory(AgentModel& am)
     tr=0;
 
      // foot positions relative to the torso
-
-  Eigen::Vector3d plrel,prrel;    
+ 
 
   if(l<0.5)
     plrel = al + sl*tlmove + sllift*tllift - sr*(1-tlmove)*tl;
@@ -110,8 +123,8 @@ Eigen::Vector3d trajectory(AgentModel& am)
   if(cnt<50){
   cout<<plrel[0]<<" "<<plrel[1]<<" "<<plrel[2]<<" ";
   cout<<prrel[0]<<" "<<prrel[1]<<" "<<prrel[2]<<endl;
-}
   cnt++;
+  }
   // for foot position w.r.t. COM
 /*
   Eigen::Vector3d cs ;                     // offset of COM relative to torso - from sim..
@@ -161,6 +174,7 @@ void HelloWorldAgent::think()
   double t = wm.getTime();
   freopen("/home/shreygarg/Desktop/data.txt","a",stdout);
   trajectory(am);
+  //cout<<am.getBodyPart(Types::LLOWERLEG)->size[2]<<endl;
   //inverse_kinematic(am,cer);
 /*
   // Get the current angles of some shoulder joints
