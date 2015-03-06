@@ -1,14 +1,12 @@
-kgpkubs3d - Code base for Robocup 3d League
+# kgpkubs3d - Code base for Robocup 3d League #
 ===========================================================
-Borrowed from:
-Sander van Dijk (sgdijk@gmail.com)
-
+## Borrowed from: ##
+### Sander van Dijk (sgdijk@gmail.com)... ###
 https://github.com/sgvandijk/libbats
 
-Fork Maintained by:
-Akshay Gupta
-
-akshaysngupta@gmail.com
+## Fork Maintained by: ##
+### Akshay Gupta (akshaysngupta@gmail.com) ###
+***
 
 **Dependencies:**
 
