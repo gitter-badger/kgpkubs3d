@@ -33,5 +33,5 @@ documentation can be found in `docs/html`.
 
  * * *
 
-***Cheers,***
-**KRSSG**
+Cheers,
+**Team KRSSG**
