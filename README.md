@@ -5,7 +5,7 @@ Borrowed from:
 https://github.com/sgvandijk/libbats
 
 Fork Maintained by:
-Akshay Gupta
+* Akshay Gupta
 akshaysngupta@gmail.com
 
 **Dependencies:**
@@ -18,8 +18,8 @@ akshaysngupta@gmail.com
 - pdflatex (optional; for PDF manual)
 
 ***Ubuntu:***
-sudo apt-get install libeigen3-dev libxml2-dev libsigc++-2.0-dev [libgtkmm-2.4-dev] [doxygen] [texlive-latex-base]
-cmake . && make && sudo make install
+`sudo apt-get install libeigen3-dev libxml2-dev libsigc++-2.0-dev [libgtkmm-2.4-dev] [doxygen] [texlive-latex-base]`
+`cmake . && make && sudo make install`
 
 **Documentation:**
 
