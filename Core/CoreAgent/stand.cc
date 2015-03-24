@@ -1,6 +1,6 @@
-#include "dribbleagent.ih"
+#include "Coreagent.ih"
 
-VectorXd DribbleAgent::stand()
+VectorXd CoreAgent::stand()
 {
   AgentModel& am = SAgentModel::getInstance();
   

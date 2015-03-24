@@ -1,6 +1,6 @@
-#include "dribbleagent.ih"
+#include "Coreagent.ih"
 
-Vector2d DribbleAgent::determineWhereToLook()
+Vector2d CoreAgent::determineWhereToLook()
 {
   Localizer& localizer = SLocalizer::getInstance();
   AgentModel& agentModel = SAgentModel::getInstance();

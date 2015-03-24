@@ -1,6 +1,6 @@
-#include "dribbleagent.ih"
+#include "Coreagent.ih"
 
-VectorXd DribbleAgent::determineWhereToWalk()
+VectorXd CoreAgent::determineWhereToWalk()
 {
   VectorXd params(6);
 

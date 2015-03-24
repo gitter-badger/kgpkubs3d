@@ -17,7 +17,7 @@
   <player-class index="10"/>
   <player-class index="11"/>
 
-  <gaitgenerator id="dribblegaitgenerator">
+  <gaitgenerator id="gaitgenerator">
     <period>0.45</period>
     <ellipselength>0.08</ellipselength>
     <sidewidth>0.04</sidewidth>
@@ -90,6 +90,4 @@
         &end;: 4;
     </sequence>
   </motionsequenceplayer>
-</conf>    
-
-
+</conf>

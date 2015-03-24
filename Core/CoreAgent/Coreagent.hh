@@ -35,8 +35,8 @@
  *		Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-#ifndef DRIBBLEAGENT_HH
-#define DRIBBLEAGENT_HH
+#ifndef CoreAGENT_HH
+#define CoreAGENT_HH
 
 #include <HumanoidAgent/humanoidagent.hh>
 #include <JointController/GaitGenerator/IKGaitGenerator/ikgaitgenerator.hh>
@@ -45,7 +45,7 @@
 
 /** A dribbling robot
   */
-class DribbleAgent : public bats::HumanoidAgent
+class CoreAgent : public bats::HumanoidAgent
 {
 public:
 
@@ -53,7 +53,7 @@ public:
    *
    *  Sets this agent's teamname to "Hello". Consider putting initialization stuff in init() instead of here.
    */
-  DribbleAgent();
+  CoreAgent();
   
 private:
   // The agent's gait generator

@@ -1,6 +1,6 @@
-#include "dribbleagent.ih"
+#include "Coreagent.ih"
 
-void DribbleAgent::think()
+void CoreAgent::think()
 {
   AgentModel& am = SAgentModel::getInstance();
   WorldModel& wm = SWorldModel::getInstance();

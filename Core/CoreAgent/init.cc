@@ -1,6 +1,6 @@
-#include "dribbleagent.ih"
+#include "Coreagent.ih"
 
-void DribbleAgent::init()
+void CoreAgent::init()
 {
   // Put initialization stuff here
   SConf::getInstance().parseFile("./conf.xml");
@@ -12,7 +12,7 @@ void DribbleAgent::init()
   SDebugger::initialize<RoboVizDebugger>();
 
   // Initialize gait generator; use Inverse Kinematics implementation
-  d_gaitGenerator = make_shared<IKGaitGenerator>("dribblegaitgenerator");
+  d_gaitGenerator = make_shared<IKGaitGenerator>("gaitgenerator");
 
   // Initialize walk parameter filter; stationary, facing forward
   d_paramFilter = VectorXd(6);
