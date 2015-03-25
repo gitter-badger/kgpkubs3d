@@ -96,6 +96,7 @@ private:
   /** Determine walking and facing directions
    */
   Eigen::VectorXd determineWhereToWalk();
+  Eigen::VectorXd goToPoint(const Eigen::Vector3d&);
 };
 
 #endif

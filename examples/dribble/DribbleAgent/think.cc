@@ -5,7 +5,8 @@ void DribbleAgent::think()
   AgentModel& am = SAgentModel::getInstance();
   WorldModel& wm = SWorldModel::getInstance();
   Cerebellum& cer = SCerebellum::getInstance();
-  
+  		  Vector3d des=SLocalizer::getInstance().getOurGoalMidpointGlobal();
+ Localizer& localizer = SLocalizer::getInstance();
   VectorXd jointVelocities;
 
   if (!d_gettingUpFrom)
@@ -52,6 +53,7 @@ void DribbleAgent::think()
       /**********
        * WALKING
        **********/
+       #ifdef orig
       VectorXd whereToWalkTo = determineWhereToWalk();
       
       // Initialize gait generator parameters
@@ -63,7 +65,54 @@ void DribbleAgent::think()
       
       // Get results
       jointVelocities = d_gaitGenerator->getJointVelocities();
-    }
+      #endif
+      static bool reached=false;
+      if(!reached)
+      {
+		  des(0)+= 1;  //to prevent collision from goalpost
+		  jointVelocities = goToPoint(localizer.globalToLocal(des));
+		  
+		  if(localizer.globalToLocal(des).norm()<0.5)
+		  { reached = true; cout <<"reached goal mid\n"; } 
+	  }
+		
+	  else /*startif now we have reached centre of our goal*/
+	  {
+		  
+		  bool do_once = false;
+		  if(!do_once)
+		  {
+			  des(1)+=1; do_once= true;
+		  }
+		  static Vector3d ball = localizer.getBall()->getPositionGlobal(true);
+		  cout <<"("<<ball(0)<<","<<ball(1)<<","<<ball(2)<<")\n";
+		  //Vector3d ball(6.7,15,0);
+		  if(ball(1) >-14)
+		  {
+			ball(1)-= 0.005;
+		  }
+		  
+		  des(1) = ball(1);
+		  cout <<"here1\n";
+		  static Vector3d ourGoal =  localizer.getOurGoalMidpointGlobal();
+		  static double goalBoundary1 = ourGoal(1) + wm.getGoalWidth()/2;
+		  static double goalBoundary2 = ourGoal(1) - wm.getGoalWidth()/2;
+		  cout <<"here2\n";
+		  cout << goalBoundary1<<" " << goalBoundary2 << " "<<des(1)<<"\n";
+		  if((des(1) < goalBoundary1) && (des(1) >goalBoundary2) )
+		  {
+			  cout <<"here3\n";
+				  jointVelocities = goToPoint(localizer.globalToLocal(des));
+		  }
+		  else
+		        jointVelocities = stand();
+
+		  cout << "here4\n";
+//		  jointVelocities = goToPoint(localizer.globalToLocal(des));
+	  }  /*endif now we have reached centre of our goal*/
+    
+    
+    } ///close all ur stuff before here
 
     /**********
      * LOOKING
