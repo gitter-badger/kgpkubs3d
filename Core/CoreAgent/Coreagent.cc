@@ -1,7 +1,7 @@
 #include "Coreagent.ih"
 
 CoreAgent::CoreAgent()
-  : HumanoidAgent("Core", "../xml/conf.xml"),
+  : HumanoidAgent("Core", "./conf.xml"),
     d_beamed(false)
 {
 }
