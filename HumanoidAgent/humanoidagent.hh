@@ -101,7 +101,11 @@ namespace bats
      * server and the WorldModel and calls think() at every step.
      */
     void run();
-    
+    static void* threadrun(void* context)
+    {
+      ((HumanoidAgent*)context)->run();
+      pthread_exit(NULL);
+    }
     static void die() { s_die = true; }
     
     static sigc::signal<void> think_start_signal;

@@ -24,7 +24,7 @@ target_link_libraries(Core bats ${LIBXML2_LIBRARIES} ${SigC++_LIBRARIES})
 if (GTKMM_FOUND)
   target_link_libraries(Core ${GTKMM_LIBRARIES})
 endif (GTKMM_FOUND)
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 configure_file(conf.xml conf.xml COPYONLY)
 configure_file(nao_mdl.xml nao_mdl.xml COPYONLY)
 configure_file(conf.dtd conf.dtd COPYONLY)
