@@ -8,10 +8,13 @@ set(CORE_SOURCES
 Core.cc
 CoreAgent/Coreagent.cc
 CoreAgent/init.cc
-CoreAgent/think.cc
+CoreAgent/goToPoint.cc
 CoreAgent/determineWhereToLook.cc
 CoreAgent/determineWhereToWalk.cc
 CoreAgent/stand.cc
+CoreAgent/fallNow.cc
+CoreAgent/think_defender.cc
+CoreAgent/takeBallToGoal.cc
 )
 
 add_executable(Core
