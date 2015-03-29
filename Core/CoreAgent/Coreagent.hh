@@ -45,7 +45,7 @@
 
 /** A dribbling robot
   */
-class CoreAgent : public bats::HumanoidAgent
+class CoreAgent:public bats::HumanoidAgent
 {
 public:
 

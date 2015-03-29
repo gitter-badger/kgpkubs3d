@@ -206,6 +206,7 @@ set(LIBBATS_SOURCES
 ./Conf/parseConf.cc
 ./Conf/selectxpath.cc
 ./Conf/Conf.cc
+./Thread/thread.cc
 )
 
 set(LIBBATS_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR} ${LIBXML2_INCLUDE_DIR} ${SigC++_INCLUDE_DIRS} ${LIBXMLXX_INCLUDE_DIRS})
@@ -346,7 +347,8 @@ set(LIBBATS_HEADERS ./Types/types.hh
 ./Conf/xmlnode.hh
 ./Conf/conf.hh
 ./Conf/xmlattr.hh
-./Range/range.hh)
+./Range/range.hh
+./Thread/thread.hh)
 
 install_headers_with_directory(include/libbats "LIBBATS_HEADERS")
 

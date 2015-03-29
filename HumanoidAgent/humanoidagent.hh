@@ -43,7 +43,7 @@
 #include "../Cochlea/cochlea.hh"
 #include "../PlayerClass/playerclass.hh"
 #include <sigc++/sigc++.h>
-
+ #include "../Thread/thread.hh"
 namespace bats
 {
   /** Humanoid agent base class
@@ -67,7 +67,7 @@ namespace bats
    * int main()
    * {
    *   MyAgent agent("MyTeam");
-   *   agent.run();
+   *   agent.run()
    * }
    * \endcode
    *
@@ -78,7 +78,7 @@ namespace bats
    * code that should be run once at start up, overload the init
    * method.
    */
-  class HumanoidAgent
+  class HumanoidAgent:public util::Thread
   {
   public:
     HumanoidAgent(std::string teamName, std::string confFile = "",
@@ -101,11 +101,11 @@ namespace bats
      * server and the WorldModel and calls think() at every step.
      */
     void run();
-    static void* threadrun(void* context)
+    /*static void* threadrun(void* context)
     {
       ((HumanoidAgent*)context)->run();
       pthread_exit(NULL);
-    }
+    }*/
     static void die() { s_die = true; }
     
     static sigc::signal<void> think_start_signal;

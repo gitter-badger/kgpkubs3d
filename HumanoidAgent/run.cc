@@ -4,7 +4,6 @@ void HumanoidAgent::run()
 {
   // Startup agent
   startUp();
-  
   // Get our worldmodel and stuff
   Cochlea& cochlea = bats::SCochlea::getInstance();
   WorldModel& wm = SWorldModel::getInstance();
