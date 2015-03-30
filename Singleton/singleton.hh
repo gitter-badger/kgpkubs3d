@@ -13,14 +13,14 @@
  *
  *  Website:	https://github.com/sgvandijk/libbats
  *
- *  Comment:	Please feel free to contact us if you have any 
+ *  Comment:	Please feel free to contact us if you have any
  *		problems or questions about the code.
  *
  *
- *  License: 	This program is free software; you can redistribute 
+ *  License: 	This program is free software; you can redistribute
  *		it and/or modify it under the terms of the GNU General
- *		Public License as published by the Free Software 
- *		Foundation; either version 3 of the License, or (at 
+ *		Public License as published by the Free Software
+ *		Foundation; either version 3 of the License, or (at
  *		your option) any later version.
  *
  *   		This program is distributed in the hope that it will
@@ -31,7 +31,7 @@
  *
  *   		You should have received a copy of the GNU General
  *		Public License along with this program; if not, write
- *		to the Free Software Foundation, Inc., 59 Temple Place - 
+ *		to the Free Software Foundation, Inc., 59 Temple Place -
  *		Suite 330, Boston, MA  02111-1307, USA.
  *
  */
@@ -41,6 +41,8 @@
 #include <stdexcept>
 #include <typeinfo>
 #include <string>
+#include <map>
+#include <pthread.h>
 
 namespace bats
 {
@@ -75,14 +77,19 @@ namespace bats
       public:
         virtual ~Params() {}
     };
-    
+
+     static uint thread_id()
+     {
+        return (uint)pthread_self();
+     }
+
     /** Initialize the singleton with a new instance of the given type.
     */
     static void initialize()
     {
-      if (s_instance)
-        delete s_instance;
-      s_instance = new T();
+      if (s_instance[thread_id()])
+        delete s_instance[thread_id()];
+      s_instance[thread_id()] = new T();
     }
 
     /** Initialize the singleton with a new instance of the given type
@@ -91,11 +98,11 @@ namespace bats
     */
     static void initialize(Params* params)
     {
-      if (s_instance)
-        delete s_instance;
-      s_instance = new T(params);
+      if (s_instance[thread_id()])
+        delete s_instance[thread_id()];
+      s_instance[thread_id()] = new T(params);
     }
-    
+
     /** Initialize the singleton with a new instance of the given
       * derived class type.  With this method, it is possible to
       * create different derived class type from same abstract
@@ -104,11 +111,11 @@ namespace bats
     template <typename I>
     static void initialize()
     {
-      if(s_instance)
-        delete s_instance;
-      s_instance = new I();      
+      if(s_instance[thread_id()])
+        delete s_instance[thread_id()];
+      s_instance[thread_id()] = new I();
     }
-    
+
     /** Initialize the singleton with a new instance of the given type
       * with parameters With this method, it is possible to create
       * different derived class type from same abstract singleton
@@ -120,37 +127,34 @@ namespace bats
     template <typename I>
     static void initialize(Params *params)
     {
-      if(s_instance)
-        delete s_instance;
-        
-      s_instance = new I(params);
+      if(s_instance[thread_id()])
+        delete s_instance[thread_id()];
+
+      s_instance[thread_id()] = new I(params);
     }
 
     static bool initialized()
     {
-      return s_instance? true : false;
+      return s_instance[thread_id()]? true : false;
     }
-    
+
     /**
      * Get a reference to the only instance of class \a T
      */
     static T& getInstance() {
-      if(s_instance == 0)
+      if(s_instance[thread_id()] == 0)
       {
-        throw std::runtime_error("A Singleton<"+std::string(typeid(s_instance).name())+"> must be initialized before use. Call initialize first.");
+        throw std::runtime_error("A Singleton<"+std::string(typeid(s_instance[thread_id()]).name())+"> must be initialized before use. Call initialize first.");
       }
-      return *s_instance;
+      return *(s_instance[thread_id()]);
     }
   private:
-    static T* s_instance;
+    static std::map<uint,T*> s_instance;
     Singleton();
     ~Singleton();
     Singleton(Singleton const&);
     Singleton& operator=(Singleton const&);
   };
-  
-  template <typename T>
-  T* Singleton<T>::s_instance = 0;
 }
 
 #endif
