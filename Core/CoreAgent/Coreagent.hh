@@ -21,7 +21,7 @@ class CoreAgent : public bats::HumanoidAgent
 
     const int MacroGoalieLimit=-12.0;
     const int MacroDefenderLimit=-7.0;
-    const int MacroMidFielderLimit=3.0;
+    const int MacroMidFielderLimit=4.0;
     private:
     // The agent's gait generator
     std::shared_ptr<bats::GaitGenerator> d_gaitGenerator;
@@ -66,7 +66,7 @@ class CoreAgent : public bats::HumanoidAgent
     void goToPoint(const Eigen::Vector3d&);
     void takeBallToGoal();
     void fallNow(int sideToFall);
-
+    void goToPoint_FaceTheGoal(const Eigen::Vector3d& pointPosition);
 
 };
 

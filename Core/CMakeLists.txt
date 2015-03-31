@@ -15,6 +15,7 @@ CoreAgent/stand.cc
 CoreAgent/fallNow.cc
 CoreAgent/think_defender.cc
 CoreAgent/takeBallToGoal.cc
+CoreAgent/goToPoint_FaceTheGoal.cc
 )
 
 add_executable(Core

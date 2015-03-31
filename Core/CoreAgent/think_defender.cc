@@ -25,7 +25,12 @@ void CoreAgent::think()
 		if(ball(0)>MacroDefenderLimit+0.5 || ball(0) < (MacroGoalieLimit - 0.5)) //Ball is far, reset position !
 		{
 			des(0) = defenderNormalPos0;
-			goToPoint(localizer.globalToLocal(des));
+			static Vector3d ourGoal =  localizer.getOurGoalMidpointGlobal();
+			int x = ball(1) - ((ball(1)-ourGoal(1))/(ball(0)-ourGoal(0))) * ball(0);
+//			cout <<"x = " << x << "\n";
+//			cout <<ball(0) <<" "<< ball(1) << " " << ball(2) <<"\n"; 
+ 			goToPoint(localizer.globalToLocal(Vector3d(des(0),x,0)));
+
 		}
 		else
 		{
