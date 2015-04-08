@@ -1,6 +1,6 @@
 #include "Coreagent.ih"
 
-void CoreAgent::think()
+void CoreAgent::think_defender()
 {
 	static const double defenderNormalPos0 = (MacroGoalieLimit+MacroDefenderLimit)/2.0;
 	WorldModel& wm = SWorldModel::getInstance();

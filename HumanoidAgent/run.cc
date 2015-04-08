@@ -1,6 +1,6 @@
 #include "humanoidagent.ih"
 
-void HumanoidAgent::run()
+void HumanoidAgent::run(char c)
 {
   // Startup agent
   startUp();
@@ -115,8 +115,28 @@ gettimeofday(&end, 0);
     {
       try
       {
-        think();
-      }
+	if(c=='1')
+	{
+	think_defender();
+	}
+        else if(c=='2')
+	{
+	think_midFielder();
+	}
+	else if(c=='3')
+	{
+	think_attacker();
+	}
+	else if(c=='0')
+	{
+	think_goalie();
+	}
+	else
+	{
+		std::cout <<"Error in run, in try!\n";exit(0);
+	}
+              
+	}
       catch (runtime_error err)
       {
         cerr << "(HumanoidAgent::run) Error caught from think: " << err.what() << endl;

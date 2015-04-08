@@ -1,11 +1,11 @@
 #include "Coreagent.ih"
 
 
-void CoreAgent::think_midFielder()
+void CoreAgent::think_attacker()
 {
-	static const double midFielderNormalPos0 = (MacroMidFielderLimit+MacroDefenderLimit)/2.0 -1.0;
+	static const double attackerNormalPos0 = (MacroattackerLimit+MacroMidFielderLimit)/2.0 -1.0;
 	WorldModel& wm = SWorldModel::getInstance();
-	Vector3d des(midFielderNormalPos0,0,0);
+	Vector3d des(attackerNormalPos0,0,0);
 	Localizer& localizer = SLocalizer::getInstance();
 
 	static bool reached=false;
@@ -14,7 +14,7 @@ void CoreAgent::think_midFielder()
 		goToPoint(localizer.globalToLocal(des));
 		if(localizer.globalToLocal(des).norm()<0.5)
 		{ 
-			reached = true; cout <<"reached midFielderNormalPos0 mid\n"; 
+			reached = true; cout <<"reached attackerNormalPos0 mid\n"; 
 		}
 	}
       /*WHILE ball is till -12 Goalie take ball to opp's goal  *
@@ -24,7 +24,7 @@ void CoreAgent::think_midFielder()
 	{
 		Vector3d ball = localizer.getBall()->getPositionGlobal(true);
 
-		if(ball(0)>MacroMidFielderLimit || ball(0) < (MacroDefenderLimit + 0.5)) //Ball is far, reset position !
+		if(ball(0)>MacroattackerLimit || ball(0) < (MacroMidFielderLimit + 0.5)) //Ball is far, reset position !
 		{
 			static Vector3d ourGoal =  localizer.getOurGoalMidpointGlobal();
 			int x = ball(1) - ((ball(1)-ourGoal(1))/(ball(0)-ourGoal(0))) * ball(0);

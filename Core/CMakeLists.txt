@@ -14,6 +14,10 @@ CoreAgent/determineWhereToWalk.cc
 CoreAgent/stand.cc
 CoreAgent/fallNow.cc
 CoreAgent/think_defender.cc
+CoreAgent/think_midFielder.cc
+CoreAgent/think_attacker.cc
+CoreAgent/think_goalie.cc
+
 CoreAgent/takeBallToGoal.cc
 CoreAgent/goToPoint_FaceTheGoal.cc
 )

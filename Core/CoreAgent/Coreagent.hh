@@ -22,6 +22,7 @@ class CoreAgent : public bats::HumanoidAgent
     const int MacroGoalieLimit=-12.0;
     const int MacroDefenderLimit=-7.0;
     const int MacroMidFielderLimit=4.0;
+    const int MacroattackerLimit=20;
     private:
     // The agent's gait generator
     std::shared_ptr<bats::GaitGenerator> d_gaitGenerator;
@@ -50,7 +51,12 @@ class CoreAgent : public bats::HumanoidAgent
      *
      * Called at each cycle after a message from the server is received and parsed. Put all your thinking and acting stuff here.
      */
-    virtual void think();
+    virtual void think_defender();
+	
+    virtual void think_midFielder();
+    virtual void think_goalie();
+	
+    virtual void think_attacker();
 
     /** Determine joint velocities to move into a standing position
      */
