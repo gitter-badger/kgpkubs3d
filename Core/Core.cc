@@ -2,6 +2,7 @@
 
 int main()
 {
-    CoreAgent agent;
-    agent.run();
+  CoreAgent agent;
+  agent.run();
 }
+
