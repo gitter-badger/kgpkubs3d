@@ -1,7 +1,7 @@
 #include "CoreAgent/Coreagent.hh"
 
-int main(int argc,char **argv)
+int main()
 {
     CoreAgent agent;
-    agent.run(argv[1][0]);
+    agent.run();
 }

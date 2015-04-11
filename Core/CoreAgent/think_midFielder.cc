@@ -1,7 +1,7 @@
 #include "Coreagent.ih"
 
 
-void CoreAgent::think_midFielder()
+void CoreAgent::think()
 {
 	static const double midFielderNormalPos0 = (MacroMidFielderLimit+MacroDefenderLimit)/2.0 -1.0;
 	WorldModel& wm = SWorldModel::getInstance();

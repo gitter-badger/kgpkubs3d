@@ -100,7 +100,7 @@ namespace bats
      * Start an infinite loop that updates the communication with the
      * server and the WorldModel and calls think() at every step.
      */
-    void run(char);
+    void run();
     
     static void die() { s_die = true; }
     
@@ -134,11 +134,7 @@ namespace bats
     
     /** Perform think cycle
      */
-    virtual void think_defender() {}
-    virtual void think_midFielder() {}
- virtual void think_goalie(){}
-	
-    virtual void think_attacker(){}
+    virtual void think() {}
     
   };
   

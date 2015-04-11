@@ -1,6 +1,6 @@
 #include "Coreagent.ih"
 
-void CoreAgent::think_goalie()
+void CoreAgent::think()
 {
   static const double constGoalieMin = MacroGoalieLimit - 1.0; 
   AgentModel& am = SAgentModel::getInstance();
