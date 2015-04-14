@@ -2,6 +2,8 @@
 ===========================================================
 ## Borrowed from: ##
 ### Sander van Dijk (sgdijk@gmail.com) ###
+
+[![Join the chat at https://gitter.im/KRSSG/kgpkubs3d](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/KRSSG/kgpkubs3d?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 https://github.com/sgvandijk/libbats
 
 ## Fork Maintained by: ##
