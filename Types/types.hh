@@ -196,6 +196,32 @@ namespace bats
       NOBJECTS
     };
 
+    enum IKMove{
+
+    LEFTLEG = 0,
+    RIGHTLEG,
+
+    LEFTHAND,
+    RIGHTHAND,
+
+    FACE,
+
+    NIKMOVES
+    };
+
+    /** IKState stores the state of IK
+    * MOVING : The current part is moving. So wait until it reaches.
+    * NEXTPART : Calculate angle for the next part.
+    * STOP : This happens a part has reached it's desired angle.
+    * ENDIK : Stop IK given that the position is reached.
+    */
+    enum IKState{
+    MOVING = 0,
+    NEXTPART,
+    STOP,
+    ENDIK
+    };
+
     /// Enumeration of body parts.
     enum BodyPart
     {

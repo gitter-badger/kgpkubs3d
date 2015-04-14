@@ -326,6 +326,20 @@ namespace bats
 	v = max;
       return v;
     }
+
+    static double distance(Eigen::Vector3d a,Eigen::Vector3d b)
+    {
+    Eigen::Vector3d temp = a-b;
+    return temp.norm();
+    }
+
+    template<typename T>
+    static T signum(T n)
+    {
+    if (n < 0) return -1;
+    if (n > 0) return 1;
+    return 0;
+    }
   };
 
 };
